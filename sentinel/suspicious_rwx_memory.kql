@@ -1,0 +1,5 @@
+DeviceProcessEvents
+| where ActionType == "ProcessAccessed"
+| where GrantedAccess has "0x40" or GrantedAccess has "0x1f0fff"
+| project Timestamp, DeviceName, InitiatingProcessFileName, FileName, GrantedAccess, InitiatingProcessAccountName
+| summarize count() by DeviceName, InitiatingProcessFileName, FileName, InitiatingProcessAccountName
