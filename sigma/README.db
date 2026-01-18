@@ -1,0 +1,91 @@
+🛡️ Detection Rule: Suspicious Credential Exfiltration via HTTP POST
+🎯 Purpose
+
+This detection rule identifies potential credential exfiltration activity commonly observed in info-stealer malware campaigns.
+
+Instead of focusing on a specific malware family, the rule is behavior-based and designed to detect abnormal outbound data transfer patterns that are often used for data theft.
+
+🔍 Detection Logic Explained
+
+The rule triggers when all of the following conditions are met:
+
+HTTP POST method is used
+→ Common for sending stolen data to attacker servers
+
+URI contains .php
+→ Frequently used in C2 panels (gate.php, send.php, etc.)
+
+Large outbound payload (>50KB)
+→ Indicates bulk data exfiltration (passwords, cookies, wallets)
+
+This combination significantly reduces false positives compared to single-indicator rules.
+
+🧠 Why This Rule Matters (SOC Perspective)
+
+This rule is useful because it:
+
+Detects multiple info-stealer families, not just Mars Stealer
+
+Works even if domains change (domain-agnostic)
+
+Focuses on technique (T1041) rather than malware name
+
+Can be used as high-fidelity alert in SOC environments
+
+🧪 Example Attack Scenario
+
+Malware collects browser credentials and system data
+
+Data is compressed and encrypted
+
+Malware sends data using an HTTP POST request
+
+Payload size is unusually large
+
+This rule triggers an alert
+
+🧩 MITRE ATT&CK Mapping
+Tactic	Technique
+Exfiltration	T1041 – Exfiltration Over C2 Channel
+Credential Access	T1555 – Credentials from Password Stores
+⚠️ False Positives
+
+Possible false positives may include:
+
+Legitimate file uploads
+
+Large form submissions
+
+Internal web applications sending bulk data
+
+Recommendation:
+Correlate with:
+
+Process creating the connection
+
+Destination reputation
+
+User behavior
+
+🔄 Rule Usage
+
+This rule is implemented in:
+
+Sigma (generic detection)
+
+Splunk SPL (platform-specific detection)
+
+It can be easily converted to:
+
+Elastic (KQL)
+
+Sentinel (KQL)
+
+QRadar (AQL)
+
+✍️ Author
+
+Onur – Cybersecurity Student / Junior SOC Analyst
+This rule is part of my malware analysis → detection engineering workflow.
+
+  > This rule was derived from real malware behavior observed during hands-on malware analysis.
