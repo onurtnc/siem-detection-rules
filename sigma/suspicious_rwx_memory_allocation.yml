@@ -1,0 +1,23 @@
+title: Suspicious RWX Memory Allocation
+id: 8a2b7e91-33e5-4bcb-9d1a-rwx-memory
+status: experimental
+description: Detects processes allocating RWX memory which may indicate shellcode injection
+author: Onur
+date: 2026-01-18
+tags:
+  - attack.defense_evasion
+  - attack.t1055
+  - attack.t1027
+logsource:
+  category: process_access
+  product: windows
+
+detection:
+  selection:
+    GrantedAccess|contains: "0x40"
+  condition: selection
+
+falsepositives:
+  - Legitimate debuggers
+  - Game anti-cheat engines
+level: high
