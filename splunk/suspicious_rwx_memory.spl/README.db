@@ -1,0 +1,7 @@
+## Splunk SPL
+
+Splunk queries are written to detect high-risk behaviors observed during malware execution.
+
+Current SPL rules:
+- HTTP POST based data exfiltration
+- Suspicious RWX memory access (process injection)
