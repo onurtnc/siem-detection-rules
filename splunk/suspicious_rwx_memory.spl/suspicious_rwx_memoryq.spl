@@ -1,0 +1,9 @@
+index=sysmon EventCode=10
+| eval granted=lower(GrantedAccess)
+| where granted="0x40" OR granted="0x1f0fff"
+| stats count AS hits
+        values(SourceImage) AS source_process
+        values(TargetImage) AS target_process
+        values(CallTrace) AS call_trace
+        by Computer, User
+| where hits >= 1
