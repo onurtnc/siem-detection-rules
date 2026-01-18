@@ -1,0 +1,6 @@
+## Azure Sentinel (KQL)
+
+KQL queries are written to detect endpoint-level malicious behavior using Microsoft Defender telemetry.
+
+Current KQL rules:
+- Suspicious RWX memory allocation (process injection indicator)
