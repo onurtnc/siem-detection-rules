@@ -1,0 +1,14 @@
+### Splunk (SPL)
+
+Two SPL queries are provided:
+
+- `credential_exfiltration_http_post.spl`  
+  Flags large HTTP POST requests to `.php` endpoints (common in stealer exfil).
+
+- `credential_exfiltration_http_post_burst.spl`  
+  Reduces false positives by requiring repeated POSTs or higher total bytes within a 10-minute window.
+
+**Tuning tips:**
+- Increase/decrease the `50000` byte threshold based on your environment
+- Add allowlists for known upload services/domains
+- Correlate with process telemetry (Sysmon/EDR) for higher confidence
