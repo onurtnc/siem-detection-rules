@@ -1,0 +1,7 @@
+## Elastic / ELK
+
+Elastic rules are written using KQL and EQL to detect endpoint-level process injection behavior.
+
+Current Elastic rules:
+- Suspicious RWX memory allocation
+- Process injection indicator
