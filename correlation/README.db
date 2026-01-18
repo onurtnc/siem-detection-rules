@@ -1,0 +1,13 @@
+Malware Analysis
+      ↓
+Behavior Identification
+      ↓
+IOC Extraction
+      ↓
+Sigma Rule
+      ↓
+Splunk / KQL / Elastic Rules
+      ↓
+Correlation Rule
+      ↓
+High-Fidelity SOC Alert
